@@ -63,13 +63,17 @@
           <button class="btn .title" data-modal-open>Заказать услугу</button>
           <div data-backdrop class="backdrop is-hidden" data-modal>
             <div class="modal">
-              <b class="modal-title">Оставьте свои данные, мы вам перезвоним</b>
               <form class="form">
-        
+                <button type="button" class="form-btn" data-modal-close>
+                  <svg class="close">
+                    <use href="../img/sprite-2.svg#close"></use>
+                  </svg>
+                </button>
+                <b class="modal-title">Оставьте свои данные, мы вам перезвоним</b>
                 <div class="form-field">
                   <input type="text" class="form-input" name="name" id="name" placeholder=" " />
                   <label for="name" class="form-label">Имя</label>
-                  <svg class="form-icon">
+                  <svg class="form-icon" width="12" height="12">
                     <use href="./img/sprite-2.svg#modal-svg-1"></use>
                   </svg> 
                 </div>
@@ -91,20 +95,16 @@
                 </div>
 
                 <div class="form-comment">
-                  <textarea class="comment" name="comment" id="comment" cols=30 rows="10"></textarea>
+                  <textarea class="comment" name="comment" id="comment" placeholder=" "></textarea>
                   <label for="mail" class="form-label-comment">Комментарий</label>
                 </div>
 
-                <div class="form-field-checkbox">
-                  <label class="checkbox-field">
-                    <input type="checkbox"
-                    class="checkbox visually-hidden"
-                    value="policy"
-                    name="policy"/>
-                    <span class="checkbox-label">Соглашаюсь с рассылкой и принимаю <a class="contract" href="#">Условия договора</a></span>
-                  </label>
-                </div>
-                <button type="submit" class="btn" data-modal-close>Отправить</button>
+                <label class="checkbox-field">
+                  <input class="checkbox" type="checkbox" name="topic"/>
+                  <span class="checkbox-icon"></span>
+                  <span class="checkbox-label">Соглашаюсь с рассылкой и принимаю <a class="contract" href="#">Условия договора</a></span>
+                </label>
+                <button type="submit" class="submit-btn" data-modal-close>Отправить</button>
               </form>
             </div>
           </div>
@@ -442,16 +442,18 @@
           </section>
           <div class="mailing">
             <b class="txt">Подпишитесь на рассылку</b>
-            <div class="footer-form-field">
-              <label for="footer-mail" class="footer-form-label">E-mail</label>
-              <input type="email" class="footer-form-input" name="footer-mail" id="footer-mail" placeholder="E-mail" />
+            <div class="mailing-flex">
+              <div class="footer-form-field">
+                <label for="footer-form-mail" class="footer-form-label"></label>
+                <input type="email" class="footer-form-input" name="footer-mail" id="footer-mail" placeholder="E-mail" />
+              </div>
+              <button type="submit" class="btn title">
+                Подписаться 
+                <svg class="mailing-btn-svg" width="24" height="24">
+                  <use href="./img/sprite.svg#icon_send"></use>
+                </svg>
+              </button>
             </div>
-            <button type="submit" class="btn title">
-              Подписаться 
-              <svg class="mailing-btn-svg" width="24" height="24">
-                <use href="./img/sprite.svg#icon_send"></use>
-              </svg>
-            </button>
           </div>
         </div>
         <p class="copy container">2020 | Developed by GoIT Students </p>

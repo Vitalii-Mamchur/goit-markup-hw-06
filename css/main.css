@@ -62,17 +62,6 @@ body {
     text-transform: uppercase;
 }
 
-.visually-hidden{
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    clip: rect( 0 0 0 0 );
-    overflow: hidden;
-}
-
     /* Хедер */
 
 .main-nav{
@@ -260,14 +249,18 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     
-    min-width: 528px;
-    min-height: 581px;
+    max-width: 450px;
+    max-height: 609px;
     padding: 40px;
     background-color:  #FFFFFF;
     box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
 }
-  
+
+.form{
+    position: relative;
+}
+
 .modal-title{
     display: block;
     text-align: center;
@@ -277,60 +270,78 @@ body {
     line-height: 23px;
     text-align: center;
     letter-spacing: 0.03em;
-  
-    color: #212121;
+    color: var(--title-text-color);
 }
-  
+
 .form-field{
     position: relative;
     margin-bottom: 28px;
 }
 
+.form-btn{
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: -32px;
+    left: calc(100% + 32px);
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    background-color: var(--btn-txt-color);
+
+    transform: translateX(-100%);
+}
+
+.close{
+    display: block;
+    margin: auto;
+    width: 18px;
+    height: 18px;
+    fill: var(--logo-color);
+
+    transition: fill var(--transition-timing) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-btn:focus,
+.form-btn:hover .close{
+    fill: var(--accent-color);
+}
+
 .form-comment{
     position: relative;
+    margin-bottom: 20px;
 }
 
 .comment{
-    width: 448px;
-    height: 120px;
+    width: 100%;
+    min-height: 120px;
     resize: none;
     border: 1px solid rgba(33, 33, 33, 0.2);
     border-radius: 4px;
     padding: 12px 16px;
-    outline: none;
 }
 
 .form-label-comment{
     position: absolute;
     top: 12px;
     left: 16px;
+
+    transition: transform var(--transition-timing) cubic-bezier(0.4, 0, 0.2, 1), color var(--transition-timing) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.form-comment:focus-within .form-label-comment{
+.comment:focus + .form-label-comment, .comment:not(:placeholder-shown) + .form-label-comment{
     transform: translateY(-34px);
     color: var(--accent-color);
-}
-
-.form-comment:focus-within .comment{
-    border: 1px solid var(--accent-color);
-}
-
-.checkbox{
-    display: inline-block;
-    margin-bottom: 30px;
-}
-
-.form-label-checkbox{
-    position: absolute;
-    top: 12px;
-    left: 16px;
 }
 
 .form-label{
     position: absolute;
     left: 42px;
     top: 50%;
+
     transform: translateY(-50%);
+    transition: transform var(--transition-timing) cubic-bezier(0.4, 0, 0.2, 1);
 }
   
 .form-input{
@@ -340,18 +351,7 @@ body {
     height: 40px ;
     margin: 0;
     padding-left: 46px;
-    outline: none;
-
-    transition: transform 500ms ease;
 }
-  
-.form-input:focus{
-    border: 1px solid var(--accent-color);
-    background-color: #fff;
-
-    transition: transform 500ms ease;
-}
-  
   
 .form-input:focus + .form-label, .form-input:not(:placeholder-shown) + .form-label{
     transform: translateX(-26px) translateY(-40px);
@@ -362,45 +362,90 @@ body {
     position: absolute;
     top: 50%;
     left: 16px;
-  
-    transform: translateY(-50%);
-  
+    
     display: inline-block;
     width: 18px;
     height: 18px;
+
+    transform: translateY(-50%);
+    transition: fill var(--transition-timing) cubic-bezier(0.4, 0, 0.2, 1);
 }
   
-.form-input:focus ~ .form-icon{
+.form-input:focus ~ .form-icon, .form-input:not(:placeholder-shown) ~ .form-icon{
     fill: var(--accent-color);
 }
 
-.checkbox-field,
-.checkbox-label{
-    display: inline-flex;
+.checkbox{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect( 0 0 0 0 );
+    overflow: hidden;
+}
+
+.checkbox-field{
+    display: flex;
     align-items: center;
+    margin-bottom: 30px;
 }
 
-.checkbox ~ .checkbox-label::before{
-    content: "";
-    display: block;
+.checkbox-icon{
+    display: inline-block;
+    margin-right: 8px;
     width: 16px;
     height: 15px;
-    background-image: url("../img/sprite-2.svg#icon");
-
+    margin-right: 10px;
+    
+    border: 2px solid var(--title-text-color);
+    border-radius: 4px;
+    flex-shrink: 0;
 }
 
 .checkbox-label{
-    width: 16px;
-    height: 15px;
-    font-size: 14px;
-    line-height: 1.71;
+    font-size: 12px;
+    line-height: 14px;
     letter-spacing: 0.03em;
+}
+
+.checkbox:checked + .checkbox-icon{
+    border-color: transparent;
+    background-image: url(../img/icon-check.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-origin: border-box;
 }
   
 .contract{
     color: var(--accent-color);
       
 }
+
+.submit-btn{
+    color: var(--btn-txt-color);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.87;
+    letter-spacing: 0.06em;
+    background-color: var(--accent-color);
+    cursor: pointer;
+  
+    min-width: 200px;
+    min-height: 50px;
+    border: 1px transparent;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+    transition: background-color var(--transition-timing) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submit-btn:hover,
+.submit-btn:focus{
+    background-color: #188CE8;
+}
+
     /* Преимущества */
 
 .advantages{
@@ -747,7 +792,28 @@ body {
 }
 
 .mailing{
+    display: block;
     margin-left: auto;
+}
+
+.mailing-flex{
+    display: flex;
+}
+
+.footer-form-input{
+    min-width: 358px;
+    padding-left: 16px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-right: 12px;
+    background-color: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--btn-txt-color);
 }
 
 .mailing-btn-svg{
